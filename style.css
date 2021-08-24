@@ -1,0 +1,142 @@
+body {
+    height: 30em;
+    background-color: #90CFFB;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+#container{
+    height: 29em;
+    width: 400px;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 100px auto;
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+#calc-keys{
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 3fr 3fr 3fr 3fr 3fr;
+    grid-gap: .5em;
+    grid-template-areas:
+        "clear clear bkspace bkspace"
+        "seven eight nine divide-num"
+        "four five six multiply-num"
+        "one two three subtract-num"
+        "decimal zero-num equals add-num";
+    margin-top: 40px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+button, .num-key, .operator  {
+    height: 55px;
+    background-color: darkgray;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+button:hover, button:focus, button:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+}
+
+#screen {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    height: 70px;
+    width: 375px;
+    margin-left: 10px;
+    background-color: #A3A9A9;
+    padding-right: 5px;
+    padding-top: 5px;
+    
+}
+
+#result {
+    padding-top: 10px;
+}
+
+#current-display, #result{
+    text-align: right;
+    color: white;
+    font-size: 25px;
+}
+
+#clear {
+    grid-area: clear;
+    background-color: orange;
+    
+}
+
+#back-space {
+    grid-area: bkspace;
+    background-color: lightblue;
+}
+
+#seven {
+    grid-area: seven;
+}
+#eight {
+    grid-area: eight;
+}
+#nine{
+    grid-area: nine;
+}
+#four{
+    grid-area: four;
+}
+#five{
+    grid-area: five;
+}
+#six {
+    grid-area: six;
+}
+#one {
+    grid-area: one;
+}
+#two {
+    grid-area: two;
+}
+#three {
+    grid-area: three;
+}
+#decimal {
+    grid-area: decimal;
+}
+#zero{
+    grid-area: zero-num;
+}
+#equals{
+    grid-area: equals;
+}
+#add{
+    grid-area: add-num;
+}
+#subtract {
+    grid-area: subtract-num;
+}
+#divide {
+    grid-area: divide-num;
+}
+#multiply {
+    grid-area: multiply-num;
+}
+
+
+
+
+
+
+

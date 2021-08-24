@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="container">
+
+        <div id="screen">
+            <!-- <div id="previous-display"></div> -->
+            <div id="current-display">0</div>
+            <div id="result"></div>
+        </div>
+      
+
+        <div id="calc-keys">
+        <button id="clear">CLEAR</button>
+        <button id="back-space">BKSPACE</button>
+  
+
+        
+        <button class="num-key" id="seven" value="7">7</button>
+        <button class="num-key" id="eight" value="8">8</button>
+        <button class="num-key" id="nine" value="9">9</button>
+        <button id="divide" class="operator">/</button>
+
+
+    
+        <button class="num-key" id="four" value="4">4</button>
+        <button class="num-key" id="five" value="5">5</button>
+        <button class="num-key" id="six" value="6">6</button>
+        <button id="subtract" class="operator">-</button>
+  
+
+  
+        <button class="num-key" id="one" value="1">1</button>
+        <button class="num-key" id="two" value="2">2</button>
+        <button class="num-key" id="three" value="3">3</button>
+        <button id="multiply" class="operator">x</button>
+   
+
+
+        <button class="num-key" id="decimal" value=".">.</button>
+        <button class="num-key" id="zero" value="0">0</button>
+        <button id="equals">=</button>
+        <button id="add" class="operator">+</button>
+        <div id="calc-keys">
+
+
+    </div>
+
+
+    </div>
+<script>
+    //Numbers
+    let numKeys = document.querySelectorAll('.num-key')
+    let operateNum = document.querySelectorAll('.operator')
+    let equalsKey = document.querySelector('#equals')
+    let clear = document.querySelector('#clear')
+    let backSpace = document.querySelector('#back-space')
+
+    //Display values
+    let resultScreen = document.querySelector('#result')
+    let currentDisplay = document.querySelector('#current-display')
+
+    //Empty values for later use
+    let storedNum = ''
+    let firstNum = ''
+    let selectedOperator = ''
+
+
+    const add = (a, b) => {
+        return a + b
+    }
+    const subtract = (a, b) => {
+        return a - b
+    }
+    const multiply = (a, b) => {
+        return a * b
+    }
+    const divide = (a, b) => {
+        return a / b
+    }
+
+    const operate = (operation, a, b) => {
+        if(operation === '+'){
+            return add(a, b)
+        }else if(operation === '-'){
+            return subtract(a, b)
+        }else if(operation === 'x'){
+            return multiply(a, b)
+        }else if(operation === '/'){
+           return divide(a, b)
+        }
+    }
+
+    for(let num of numKeys){
+        num.addEventListener('click', function() {
+            storedNum += num.value
+            currentDisplay.textContent = storedNum
+        })
+    }
+
+    for(let operator of operateNum){
+        operator.addEventListener('click', function() {
+            if(firstNum && storedNum){
+                displayResult()
+            }
+            firstNum = storedNum
+            selectedOperator = operator.textContent
+            currentDisplay.textContent = storedNum + " " + selectedOperator;
+            storedNum = ''
+        })
+
+    
+    }
+
+    equalsKey.addEventListener('click', displayResult)
+    clear.addEventListener('click', resetScreen)
+    backSpace.addEventListener('click', deleteKey)
+
+    function resetScreen() {
+        storedNum = ''
+        firstNum = ''
+        currentDisplay.textContent = '0'
+        resultScreen.textContent = ''
+        selectedOperator = ''
+        previousDisplay.textContent = '0'
+    }    
+
+    function displayResult() {
+        let result = operate(selectedOperator, parseFloat(firstNum), parseFloat(storedNum))
+        resultScreen.textContent = result
+        storedNum = firstNum
+        storedNum = currentDisplay.textContent
+        selectedOperator.textContent = ''
+    }
+
+    function deleteKey() {
+        currentDisplay.textContent = currentDisplay.textContent.toString().slice(0, -1)
+        storedNum = currentDisplay.textContent
+        if(!currentDisplay.textContent){
+            currentDisplay.textContent = '0'
+        }
+    }
+     
+</script>
+</body>
+</html>
